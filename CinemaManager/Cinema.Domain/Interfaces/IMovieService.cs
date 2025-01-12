@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cinema.Domain.Interfaces
 {
-    public interface IMovieMapping
+    public interface IMovieService
     {
     }
 }

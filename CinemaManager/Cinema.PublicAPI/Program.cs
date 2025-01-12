@@ -34,7 +34,7 @@ builder.Services.AddScoped(typeof(IReadServiceAsync<,>), typeof(ReadServiceAsync
 builder.Services.AddScoped(typeof(IGenericService<,>), typeof(GenericService<,>));
 
 //Asset mappings
-builder.Services.AddScoped<IMovieMapping, MovieMapping>();
+builder.Services.AddScoped<IMovieService, MovieService>();
 
 var app = builder.Build();
 
