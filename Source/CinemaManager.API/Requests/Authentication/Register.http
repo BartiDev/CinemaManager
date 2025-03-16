@@ -1,0 +1,11 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+@host=https://localhost:7294
+
+POST {{host}}/auth/register
+Content-Type: application/json
+{
+  "firstName": "Bartlomiej",
+  "lastName": "Nowak",
+  "email": "bartlomiej.nowak22@gmail.com",
+  "password": "HasloLipcowe"
+}
