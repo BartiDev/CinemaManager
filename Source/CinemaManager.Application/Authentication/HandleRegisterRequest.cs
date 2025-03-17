@@ -1,4 +1,5 @@
-﻿using CinemaManager.Application.Common.Interfaces.Persistance;
+﻿using CinemaManager.Application.Common.Interfaces.Authentication;
+using CinemaManager.Application.Common.Interfaces.Persistance;
 using CinemaManager.Domain.User;
 using CinemaManger.Contracts.Authentication;
 using System;
@@ -12,10 +13,13 @@ namespace CinemaManager.Application.Authentication
     public class HandleRegisterRequest : IHandleRegisterRequest
     {
         private readonly IUserRepository _userRepository;
+        private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public HandleRegisterRequest(IUserRepository userRepository)
+        public HandleRegisterRequest(IUserRepository userRepository, 
+            IJwtTokenGenerator jwtTokenGenerator)
         {
             _userRepository = userRepository;
+            _jwtTokenGenerator = jwtTokenGenerator;
         }
 
         public AuthenticationResponse Handle(RegisterRequest request)
@@ -32,7 +36,7 @@ namespace CinemaManager.Application.Authentication
 
             _userRepository.Add(newUser);
 
-            string token = Guid.NewGuid().ToString();
+            string token = _jwtTokenGenerator.GenerateToken(newUser);
 
             return new AuthenticationResponse(
                 newUser,
